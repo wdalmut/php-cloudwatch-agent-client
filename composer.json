@@ -1,0 +1,6 @@
+{
+    "name": "wdalmut/cloudwatch-agent-client",
+    "autoload": {
+        "psr-4": { "Corley\\": "src/" }
+    }
+}
