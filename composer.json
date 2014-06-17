@@ -1,5 +1,6 @@
 {
     "name": "wdalmut/cloudwatch-agent-client",
+    "license": "MIT",
     "autoload": {
         "psr-4": { "Corley\\": "src/" }
     }
