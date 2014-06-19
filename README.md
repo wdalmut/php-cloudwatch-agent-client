@@ -22,10 +22,11 @@ The API is very simple, just a simple call
 Corley\CloudWatch\Agent::point($namespace, $metric, $value);
 ```
 
-You can also send the unit
+You can also send the unit and the operation
 
 ```
 Agent::point($namespace, $metric, $value, ["unit" => Agent::UNIT_MILLISECONDS]);
+Agent::point($namespace, $metric, 1, ["op" => Agent::OP_SUM]);
 ```
 
 Valid units are:
