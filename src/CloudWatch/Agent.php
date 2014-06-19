@@ -29,12 +29,26 @@ class Agent
     const UNIT_TERABITS_SECOND = "Terabits/Second";
     const UNIT_COUNT_SECOND = "Count/Second";
 
+    const OP_AVG = "avg";
+    const OP_SUM = "sum";
+    const OP_MIN = "min";
+    const OP_MAX = "max";
+
     public static function point($namespace, $metric, $value, $options = array())
     {
         $message = array('namespace' => $namespace, 'metric' => $metric, 'value' => floatval($value));
 
-        if (is_array($options) && array_key_exists("unit", $options)) {
-            $message["unit"] = $options["unit"];
+        if (is_array($options)) {
+            if (array_key_exists("unit", $options)) {
+                $message["unit"] = $options["unit"];
+            }
+
+            if (array_key_exists("op", $options)) {
+                $options["op"] = strtolower($options["op"]);
+                if (in_array($options["op"], [self::OP_AVG, self::OP_MAX, self::OP_MIN, self::OP_SUM])) {
+                    $message["op"] = $options["op"];
+                }
+            }
         }
 
         $json_message = json_encode($message);
